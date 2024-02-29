@@ -16,9 +16,11 @@ function App() {
   const [pyUrl , setPyurl] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const ENDPOINT = "https://codename-preto-3c522b5368ab.herokuapp.com";
+
   function onRunClick(){
     setLoading(true);
-    Axios.post(`http://localhost:4000/compile`, {
+    Axios.post(`${ENDPOINT}/compile`, {
       initcode: initCode,
       loopcode: loopCode
   }).then(res=>{
