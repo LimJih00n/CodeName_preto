@@ -41,7 +41,7 @@ function App() {
       case 'notionPage':
         // 노션 페이지를 렌더링하는 경우, 노션 페이지의 URL을 iframe src 속성에 설정해야 합니다.
         return <Iframe 
-        url= {"./public/notion_test.html"}
+        url= {`${process.env.PUBLIC_URL}/example.html`}
         width= '100%'
         height= '100%'
         />
