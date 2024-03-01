@@ -15,8 +15,6 @@ const PyscriptView = ({ runchRrl }) => {
                 alert("성공! 골드와 보석을 모두 획득하셨습니다!");
             }
             if(event.data.type ==="XY_state"){
-                console.log(userX);
-                console.log(userY);
                 setUserX(event.data.message.x);
                 setUserY(event.data.message.y);
                 
