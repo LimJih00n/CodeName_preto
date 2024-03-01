@@ -4,8 +4,6 @@ import world
 from pyodide import create_proxy
 import datetime as dt
 import asyncio
-import user_interact
-
 lastTime = 4
 fps = 30
 fpsInterval = 1000 / fps

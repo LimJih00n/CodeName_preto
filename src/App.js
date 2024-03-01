@@ -28,6 +28,7 @@ function App() {
   }).then(res=>{
     console.log(res.data);
     setPyurl(`${process.env.PUBLIC_URL}/pyscript_test.html`);
+    console.log(`${process.env.PUBLIC_URL}/pyscript_test.html`);
   }).then(()=>{
     setLoading(false);
   })
