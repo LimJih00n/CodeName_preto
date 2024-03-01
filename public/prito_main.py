@@ -70,7 +70,6 @@ def UserInitCode():
     state = 0
 #$user_init_start
     # Enter your code here
-    ㅁㄴㅇ
 #$user_init_out
 def UserLoopCode():
     state=0
