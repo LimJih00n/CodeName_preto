@@ -238,7 +238,7 @@ def frame_loop(*args):
             frame_index * frame_width, 0, # 스프라이트 시트에서의 x, y 위치
             frame_width, frame_height,    # 추출할 프레임의 너비와 높이
             0, 0,                         # 캔버스 상의 x, y 위치
-            canvas.width, canvas.height   # 캔버스 상의 프레임의 너비와 높이
+            50, 50   # 캔버스 상의 프레임의 너비와 높이
         )
         
         
