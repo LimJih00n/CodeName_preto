@@ -143,7 +143,7 @@ warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",knight_img_set_)
 w_img = Image.new()
 w_img.src = './assets/Warrior_Blue.png'
 
-frame_width = 100 # 각 프레임의 너비
+frame_width = 200 # 각 프레임의 너비
 frame_height = 100 # 각 프레임의 높이
 num_frames = 6 # 스프라이트에서 프레임의 총 수
 frame_index = 0
