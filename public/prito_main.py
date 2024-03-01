@@ -211,6 +211,10 @@ def frame_loop(*args):
     global ratValue
     global Item_count
     global World_objects_draw
+    
+    global frame_height
+    global frame_index
+    global frame_width
     #print(lastTime)
     
     
