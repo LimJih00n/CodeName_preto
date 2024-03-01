@@ -143,7 +143,8 @@ warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",knight_img_set_)
 w_img = Image.new()
 w_img.src = './assets/Warrior_Blue.png'
 
-frame_width = 200 # 각 프레임의 너비
+frame_width_ = 200
+frame_width = 180 # 각 프레임의 너비
 frame_height = 100 # 각 프레임의 높이
 num_frames = 6 # 스프라이트에서 프레임의 총 수
 frame_index = 0
@@ -218,6 +219,7 @@ def frame_loop(*args):
     global frame_height
     global frame_index
     global frame_width
+    global frame_width_
     global num_frames
     #print(lastTime)
     
@@ -235,7 +237,7 @@ def frame_loop(*args):
             
         ctx.drawImage(
             w_img, 
-            frame_index * frame_width, 0, # 스프라이트 시트에서의 x, y 위치
+            frame_index * frame_width_, 0, # 스프라이트 시트에서의 x, y 위치
             frame_width, frame_height,    # 추출할 프레임의 너비와 높이
             0, 0,                         # 캔버스 상의 x, y 위치
             50, 50   # 캔버스 상의 프레임의 너비와 높이
