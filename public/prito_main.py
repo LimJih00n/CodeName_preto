@@ -86,6 +86,9 @@ rabbit_img_set ={
     "left":['./assets/rabbit/left/1.png','./assets/rabbit/left/2.png','./assets/rabbit/left/3.png','./assets/rabbit/left/4.png'],
     "right":['./assets/rabbit/right/1.png','./assets/rabbit/right/2.png','./assets/rabbit/right/3.png','./assets/rabbit/right/4.png'],
 }
+knight_img_set_ ={
+    "default":['./assets/Warrior_Blue.png']
+}
 knight_img_set ={
     "default":['./assets/knight/right/Warrior_Blue_1.png','./assets/knight/right/Warrior_Blue_2.png','./assets/knight/right/Warrior_Blue_3.png',
                './assets/knight/right/Warrior_Blue_4.png','./assets/knight/right/Warrior_Blue_5.png','./assets/knight/right/Warrior_Blue_6.png',],
@@ -134,8 +137,15 @@ World_Walls = []
 # hit x,y: hit box의 시작좌표
 # hit_w _h : hit box의 width와 height
 
-warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",knight_img_set)
+warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",knight_img_set_)
 
+
+w_img = Image.new()
+w_img.src = './assets/Warrior_Blue.png'
+
+frame_width = 100 # 각 프레임의 너비
+frame_height = 100 # 각 프레임의 높이
+num_frames = 6 # 스프라이트에서 프레임의 총 수
 gem = world.Item(413,413,25,25,413,413,25,25,"S",0,0,"default",Gem_img_set)
 gold = world.Item(413,113,25,25,413,113,25,25,"S",0,0,"default",Gold_img_set)
 
@@ -172,7 +182,6 @@ background_draw = DrawImage(background)
 World_Walls = [sheep,tree1,tree2,tree3,castle,house,tower]
 world_Items = [gem,gold]
 World_objects_draw=[(background,background_draw),
-                    (warrior,warrior_draw),
                     (sheep,sheep_draw),
                     (tree1,tree1_draw),
                     (tree2,tree2_draw),
@@ -214,6 +223,18 @@ def frame_loop(*args):
         # 그리는 부분 수정!
         for obj,draw in World_objects_draw:
             update_draw(obj,draw)
+            
+            
+        ctx.drawImage(
+            w_img, 
+            frame_index * frame_width, 0, # 스프라이트 시트에서의 x, y 위치
+            frame_width, frame_height,    # 추출할 프레임의 너비와 높이
+            0, 0,                         # 캔버스 상의 x, y 위치
+            canvas.width, canvas.height   # 캔버스 상의 프레임의 너비와 높이
+        )
+        
+        
+        frame_index = (frame_index + 1) % num_frames # 다음 프레임으로
         
         for wall in World_Walls:
             if warrior.check_collision(wall):                                                                                                                    
