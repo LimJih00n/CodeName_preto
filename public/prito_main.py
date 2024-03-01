@@ -146,6 +146,9 @@ w_img.src = './assets/Warrior_Blue.png'
 frame_width = 100 # 각 프레임의 너비
 frame_height = 100 # 각 프레임의 높이
 num_frames = 6 # 스프라이트에서 프레임의 총 수
+frame_index = 0
+
+
 gem = world.Item(413,413,25,25,413,413,25,25,"S",0,0,"default",Gem_img_set)
 gold = world.Item(413,113,25,25,413,113,25,25,"S",0,0,"default",Gold_img_set)
 
@@ -215,6 +218,7 @@ def frame_loop(*args):
     global frame_height
     global frame_index
     global frame_width
+    global num_frames
     #print(lastTime)
     
     
