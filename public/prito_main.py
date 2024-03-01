@@ -205,7 +205,7 @@ def frame_loop(*args):
     #print(lastTime)
     
     
-    if lastTime%1 ==0:
+    if lastTime%3 ==0:
         
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         sheep.move_left_right(500)
