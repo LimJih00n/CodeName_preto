@@ -41,7 +41,7 @@ function App() {
       case 'notionPage':
         // 노션 페이지를 렌더링하는 경우, 노션 페이지의 URL을 iframe src 속성에 설정해야 합니다.
         return <Iframe 
-        url= {"https://inpa.tistory.com/entry/CSS-%F0%9F%93%9A-%EC%B5%9C%EC%8B%A0-CSS-%EA%B8%B0%EB%8A%A5-%F0%9F%8E%A8-flexbox-gap"}
+        url= {"../public/notion_test.html"}
         width= '100%'
         height= '100%'
         />
