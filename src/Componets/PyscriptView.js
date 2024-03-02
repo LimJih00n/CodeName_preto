@@ -17,6 +17,7 @@ const PyscriptView = ({ runchRrl }) => {
 
             if (event.data.type === "gameCompleted") {
                 // Set game completion state
+                alert("mission!! 성공!");
                 setGameCompleted(true);
             } else if (event.data.type === "XY_state") {
                 setUserX(event.data.message.x);
@@ -56,11 +57,25 @@ const PyscriptView = ({ runchRrl }) => {
                 </>
             ) : (
                 // Display the completion logo when the game is completed
-                <div className='CompletionLogo' style={{textAlign: 'center', marginTop: '50px'}}>
-                    <a href="https://walla.my/survey/Cdd7bTtIQ8PwHPn2Eit5">
-                        <img src={logo_img} alt="Completion Logo" style={{maxWidth: '100%', height: 'auto'}}/>
-                    </a>
+                <>
+                <div className='PysciptInfo'>
+                        <div className='inner-info-box'>
+                            <div>
+                                <h5>Mission: 다음 stage를 도전하고 싶다면!</h5>
+                            </div>
+                            <div>
+                                <h6>아래 로고를 클릭해주세요!</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='IframeWrapper'>
+                        <div className='CompletionLogo' style={{textAlign: 'center', marginTop: '50px'}}>
+                            <a href="https://walla.my/survey/Cdd7bTtIQ8PwHPn2Eit5">
+                                <img src={logo_img} alt="Completion Logo" style={{maxWidth: '100%', height: 'auto'}}/>
+                            </a>
+                    </div>
                 </div>
+                </>
             )}
         </div>
     );
