@@ -87,8 +87,8 @@ function CodeEditor({ initCode, setInitCode, loopCode, setLoopCode }) {
             backgroundColor: 'black',
           }}
     >
-      <Tab eventKey="init" title={<TabTitle title="Init" tooltipText="Initialize your code here"/>}></Tab>
-          <Tab eventKey="loop" title={<TabTitle title="Loop" tooltipText="Loop your code here"/>}></Tab>
+      <Tab eventKey="init" title={<TabTitle title="init" tooltipText="Initialize your code here"/>}></Tab>
+          <Tab eventKey="loop" title={<TabTitle title="loop" tooltipText="Loop your code here"/>}></Tab>
       
       </Tabs>
     </div>

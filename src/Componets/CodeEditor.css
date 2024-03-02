@@ -23,6 +23,7 @@
     height: 88%;
 }
 .nav-link.active {
+    font-family: Noto Sans Mono !important; 
     color: #00f224 !important;
     background-color: #1A1D31 !important;
     border-color: #00f224 !important;
@@ -32,6 +33,7 @@
   }
   
   .nav-link {
+    font-family: Noto Sans Mono !important; 
     color: #009C17 !important;
     background-color: #111426 !important;
     border-color: black !important;
