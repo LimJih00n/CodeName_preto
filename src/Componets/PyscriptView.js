@@ -57,7 +57,7 @@ const PyscriptView = ({ runchRrl }) => {
             ) : (
                 // Display the completion logo when the game is completed
                 <div className='CompletionLogo' style={{textAlign: 'center', marginTop: '50px'}}>
-                    <a href="YOUR_DESIRED_URL_HERE">
+                    <a href="https://walla.my/survey/Cdd7bTtIQ8PwHPn2Eit5">
                         <img src={logo_img} alt="Completion Logo" style={{maxWidth: '100%', height: 'auto'}}/>
                     </a>
                 </div>
