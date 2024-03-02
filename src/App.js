@@ -5,6 +5,7 @@ import Navbar_ from './Componets/Navbar_';
 import SideBar from './Componets/SideBar';
 import CodeEditor from './Componets/CodeEditor';
 import PyscriptView from './Componets/PyscriptView';
+import NotionPage from './Componets/NotionPage';
 import Iframe from 'react-iframe'
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
@@ -26,9 +27,7 @@ function App() {
       initcode: initCode,
       loopcode: loopCode
   }).then(res=>{
-    console.log(res.data);
     setPyurl(`${ENDPOINT}/pyscript_test.html`);
-    console.log(`${process.env.PUBLIC_URL}/pyscript_test.html`);
   }).then(()=>{
     setLoading(false);
   })
@@ -41,10 +40,7 @@ function App() {
         return <CodeEditor initCode={initCode} setInitCode={setInitCode} loopCode={loopCode} setLoopCode={setLoopCode} />;
       case 'notionPage':
         // 노션 페이지를 렌더링하는 경우, 노션 페이지의 URL을 iframe src 속성에 설정해야 합니다.
-        return <Iframe 
-        url= {`${process.env.PUBLIC_URL}/notion_test.html`}
-        width= '100%'
-        height= '100%'
+        return <NotionPage
         />
         
       default:
