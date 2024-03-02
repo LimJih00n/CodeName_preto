@@ -3,7 +3,7 @@ import './SideBar.css';
 import { TfiAgenda, TfiSettings } from "react-icons/tfi";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import NotionPage from './Componets/NotionPage';
+
 
 const SideBar = ({ setActiveComponent }) => {
     return (

@@ -5,13 +5,12 @@ import Navbar_ from './Componets/Navbar_';
 import SideBar from './Componets/SideBar';
 import CodeEditor from './Componets/CodeEditor';
 import PyscriptView from './Componets/PyscriptView';
-import NotionPage from './Componets/NotionPage';
 import Iframe from 'react-iframe'
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState('codeEditor');
+  const [activeComponent, setActiveComponent] = useState('notionPage');
   const [initCode, setInitCode] = useState('#RUN 시 한번만 실행됩니다!');
   const [loopCode, setLoopCode] = useState('#진행하는 동안 계속 실행됩니다!');
   const [pyUrl , setPyurl] = useState('');
@@ -40,7 +39,10 @@ function App() {
         return <CodeEditor initCode={initCode} setInitCode={setInitCode} loopCode={loopCode} setLoopCode={setLoopCode} />;
       case 'notionPage':
         // 노션 페이지를 렌더링하는 경우, 노션 페이지의 URL을 iframe src 속성에 설정해야 합니다.
-        return <NotionPage
+        return <Iframe 
+        url= {`https://www.notioniframe.com/notion/udhq6shqizb`}
+        width= '100%'
+        height= '100%'
         />
         
       default:
