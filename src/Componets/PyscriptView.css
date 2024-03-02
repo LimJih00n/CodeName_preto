@@ -2,11 +2,13 @@
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background-color: aquamarine;
+    background-color: black;
 }
 .PysciptInfo{
+    color: #00f224;
     width: 100%;
     height: 12%;
+    font-family: EliceDigitalBaeum;
 }
 .inner-info-box{
     padding-top: 20px;

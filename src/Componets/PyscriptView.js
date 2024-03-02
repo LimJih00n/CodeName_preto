@@ -35,10 +35,10 @@ const PyscriptView = ({ runchRrl }) => {
             <div className='PysciptInfo'>
                 <div className='inner-info-box'>
                     <div>
-                        <h4>기사를 움직여 골드와 보석을 획득하세요!</h4>
+                        <h5>Mission: 기사를 움직여 골드를 획득하세요!</h5>
                     </div>
                     <div>
-                        <h5>기사: (x: {userX},y: {userY})</h5>
+                        <h6>기사: (x: {userX},y: {userY})</h6>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ const SideBar = ({ setActiveComponent }) => {
     return (
         <div className="sidebar">    
             <div className="sidebarWrapper">
-                <h6 className="sidebarTitle">Dash</h6>
+                <h6 className="sidebarTitle" >DASH</h6>
                 <div className="sidebarIcon" onClick={() => setActiveComponent('notionPage')}>
                     <OverlayTrigger
                         placement="right"
@@ -16,7 +16,7 @@ const SideBar = ({ setActiveComponent }) => {
                         overlay={<Tooltip id="agenda-tooltip">Agenda</Tooltip>}
                     >
                         <button style={{ background: "transparent", border: "none" }}>
-                            <TfiAgenda size="25"/>
+                            <TfiAgenda size="25" color= "#00f224"/>
                         </button>
                     </OverlayTrigger>
                 </div>
@@ -27,7 +27,7 @@ const SideBar = ({ setActiveComponent }) => {
                         overlay={<Tooltip id="settings-tooltip">Settings</Tooltip>}
                     >
                         <button style={{ background: "transparent", border: "none" }}>
-                            <TfiSettings size="25"/>
+                            <TfiSettings size="25" color= "#00f224"/>
                         </button>
                     </OverlayTrigger>
                 </div>

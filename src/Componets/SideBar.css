@@ -3,7 +3,7 @@
     height: 100%;
     padding-top: 15px;
     border-radius: 10px;
-    background-color: aquamarine;
+    background-color: black;
 }
 .sidebarWrapper{
     display: flex;
@@ -13,11 +13,11 @@
     display: flex;
     justify-content: center;
     align-items: center; 
+    color: #00f224;
 }
 .sidebarIcon{
     display: flex;
     justify-content: center;
     align-items: center; 
     padding-top: 30px;
-
 }

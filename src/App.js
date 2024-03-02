@@ -11,8 +11,8 @@ import Axios from 'axios';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('codeEditor');
-  const [initCode, setInitCode] = useState('');
-  const [loopCode, setLoopCode] = useState('');
+  const [initCode, setInitCode] = useState('#RUN 시 한번만 실행됩니다!');
+  const [loopCode, setLoopCode] = useState('#진행하는 동안 계속 실행됩니다!');
   const [pyUrl , setPyurl] = useState('');
   const [loading, setLoading] = useState(false);
 

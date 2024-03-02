@@ -6,12 +6,24 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { loader } from '@monaco-editor/react';
+
+loader.init().then((monaco) => {
+  monaco.editor.defineTheme('myTheme', {
+      base: 'vs-dark',
+      inherit: true,
+      rules: [],
+      colors: {
+          'editor.background': '#1a1d31',
+      },
+  });
+});
 
 function CodeEditor({ initCode, setInitCode, loopCode, setLoopCode }) {
   // 각 탭별 코드를 저장할 상태
   const [currentTab, setCurrentTab] = useState('init'); // 현재 선택된 탭 상태
-  const [userTheme, setUserTheme] = useState('light');
-  const [fontSize, setFontSize] = useState(20);
+  const [userTheme, setUserTheme] = useState("myTheme");
+  const [fontSize, setFontSize] = useState(18);
   const [loading, setLoading] = useState(false);
   const editorRef = useRef(null); // 에디터 컨테이너의 ref
   const [editorHeight, setEditorHeight] = useState('500px'); // 초기 에디터 높이
@@ -72,7 +84,7 @@ function CodeEditor({ initCode, setInitCode, loopCode, setLoopCode }) {
       onSelect={handleTabSelect} // 탭이 선택될 때 호출될 함수 설정
       style={{
             width:'100%',
-            backgroundColor: 'aquamarine',
+            backgroundColor: 'black',
           }}
     >
       <Tab eventKey="init" title={<TabTitle title="Init" tooltipText="Initialize your code here"/>}></Tab>
@@ -82,14 +94,13 @@ function CodeEditor({ initCode, setInitCode, loopCode, setLoopCode }) {
     </div>
       <div className='CodeEditorWrapper'>
         <div ref={editorRef} style={{ width: '100%', height: '100%' }}>
-            <Editor
-            options={options}
+        <Editor 
+              options={options}
               height={editorHeight}
               width={editorWidth}
               theme={userTheme}
               defaultLanguage="python"
               defaultValue="# Enter your code here"
-              
               onChange={handleEditorChange}
               value={currentTab === 'init' ? initCode : loopCode} // 현재 탭에 따른 코드를 에디터에 표시
             />

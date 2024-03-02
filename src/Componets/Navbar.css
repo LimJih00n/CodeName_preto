@@ -1,5 +1,6 @@
 .navbar-custom {
-    background-color: aquamarine !important;
+    background-color: black !important;
+    border-radius: 10px;
   }
   .navbar-custom .navbar-collapse {
     justify-content: center;
@@ -8,4 +9,5 @@
   .navbar-custom .btn {
     margin-right: auto;
     margin-left: auto;
+    border-color: #00f224 !important;
   }
