@@ -94,6 +94,22 @@ class Wall(GameObject):
         elif self.x<0 and self.state =="left":
             self.direction = "R"
             self.state ="right"
+    
+    def move_rectangle(self,X1,Y1,X2,Y2):
+        
+        if self.x < X1 and self.y < Y1 and self.direction == "U":
+            self.direction = "R"
+            self.state = "right"
+        elif self.x > X2 and self.direction == "R":
+            self.direction = "D"
+            self.state = "left"
+        elif self.x > X2 and self.y>Y2 and self.direction == "D":
+            self.direction = "L"
+            self.state = "left"
+        elif self.x<X1 and self.direction == "L":
+            self.direction = "U"
+            self.state = "right"
+        
         
             
         

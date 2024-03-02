@@ -1,6 +1,7 @@
 from js import document, window, Image, console
 import js
 import world
+import img_dic_set as ids
 from pyodide import create_proxy
 import datetime as dt
 import asyncio
@@ -29,7 +30,7 @@ class DrawImage: # main에서만 js꺼 다룰 수 있음!
     def draw(self, obj):
         
         self.frame_length = obj.img_dic[obj.state]["frame"]
-        frame_width_move = obj.img_dic[obj.state]["f-width-full"] / self.frame_length
+        frame_width_move = obj.img_dic[obj.state]["f-width-full"] // self.frame_length
         frame_width = obj.img_dic[obj.state]["f-width"]
         frame_height = obj.img_dic[obj.state]["f-height"]
         self.x = obj.x
@@ -90,132 +91,7 @@ def UserLoopCode():
 
 
 ################################
-knight_img_dic ={
-    "default":
-        {
-            "frame":6,
-            "f-width-full":1152,
-            "f-widht": 100,
-            "f-height":100,
-            "img-url": './assets/knight/right/w-right.png'
-        },
-    "left":{
-            "frame":6,
-            "f-width-full":1152,
-            "f-widht": 100,
-            "f-height":100,
-            "img-url": './assets/knight/left/w-left.png'
-        },
-    "right":{
-            "frame":6,
-            "f-width-full":1152,
-            "f-widht": 100,
-            "f-height":100,
-            "img-url": './assets/knight/right/w-right.png'
-        }
-}
-sheep_img_dic = {
-    "default":{
-            "frame":6,
-            "f-width-full":768,
-            "f-width":50,
-            "f-height":60,
-            "img-url": './assets/objects/sheep/right/sheep-right.png'
-        },
-    "right":{
-            "frame":6,
-            "f-width-full":768,
-            "f-width":50,
-            "f-height":60,
-            "img-url": './assets/objects/sheep/right/sheep-right.png'
-        },
-    "left":{
-            "frame":6,
-            "f-width-full":768,
-            "f-width":50,
-            "f-height":60,
-            "img-url": './assets/objects/sheep/left/sheep-left.png'
-        },
-}
 
-tree_img_dic = {
-    "default":{
-            "frame":4,
-            "f-width-full":768,
-            "f-width": 50,
-            "f-height":180,
-            "img-url": './assets/objects/tree/Tree.png'
-    }
-}
-goblin_img_dic = {
-     "default":
-        {
-            "frame":6,
-            "f-width-full":1152,
-            "f-width": 100,
-            "f-height":100,
-            "img-url": './assets/goblin/right/g-right.png'
-        },
-    "left":{
-            "frame":6,
-            "f-width-full":1152,
-            "f-width": 100,
-            "f-height":100,
-            "img-url": './assets/goblin/left/g-left.png'
-        },
-    "right":{
-            "frame":6,
-            "f-width-full":1152,
-            "f-width": 100,
-            "f-height":100,
-            "img-url": './assets/goblin/right/g-right.png'
-        }
-}
-Castle_img_dic = {
-    "default":{
-        "frame":1,
-        "f-width-full":195,
-        "f-width":195,
-        "f-height":288,
-        "img-url":'./assets/Buildings/Castle/Castle_Blue.png'
-    }
-}
-House_img_dic = {
-      "default":{
-        "frame":1,
-        "f-width-full":108,
-        "f-width":108,
-        "f-height":142,
-        "img-url":'./assets/Buildings/House/House_Blue.png'
-    }
-}
-Tower_img_dic ={
-     "default":{
-        "frame":1,
-        "f-width-full":115,
-        "f-width":115,
-        "f-height":173,
-        "img-url":'./assets/Buildings/Tower/Tower_Blue.png'
-    }
-}
-background_img_dic={
-     "default":{
-        "frame":1,
-        "f-width-full":3300,
-        "f-width":3300,
-        "f-height":3300,
-        "img-url":'./assets/background/grid_tile.png'
-    }
-}
-gold_img_dic={
-    "default":{
-        "frame":7,
-        "f-width-full":896,
-        "f-width":50,
-        "f-height":80,
-        "img-url":'./assets/objects/gold/G_Spawn.png'
-    }
-}
 
 castle_set = []
 World_Walls = []
@@ -227,72 +103,70 @@ World_Walls = []
 # hit x,y: hit box의 시작좌표
 # hit_w _h : hit box의 width와 height
 
-warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",knight_img_dic)
+warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",ids.knight_img_dic)
 
+gold1 = world.Item(400,100,50,50,413,113,50,50,"S",0,0,"default",ids.gold_img_dic)
+gold2 = world.Item(200,200,50,50,200,200,50,50,"S",0,0,"default",ids.gold_img_dic)
+gold3 = world.Item(400,400,50,50,400,400,50,50,"S",0,0,"default",ids.gold_img_dic)
 
-
-
-# warrior: 1152-6: 192-100
-#tree 768-4 -180
-#sheep 768-6 - 60
-#gold 896-7 - 80
-#goblin 1152-6-100
-
-
-
-gold = world.Item(413,113,25,25,413,113,25,25,"S",0,0,"default",gold_img_dic)
-
-# 좌표지정
-#hit_w = width - hit_x
-#hit_h = height - hit_y
-
-sheep = world.Wall(0,250,50,50,0,250,50,50,"S",0,0,"right",sheep_img_dic)
-tree1 = world.Wall(100,300,50,150,100,400,50,50,"S",0,0,"default",tree_img_dic)
-tree2 = world.Wall(200,300,50,150,200,400,50,50,"S",0,0,"default",tree_img_dic)
-tree3 = world.Wall(400,200,50,150,400,300,50,50,"S",0,0,"default",tree_img_dic)
-castle = world.Wall(100,100,100,100,100,100,100,100,"S",0,0,"default",Castle_img_dic)
-house = world.Wall(250,50,50,100,250,100,50,50,"S",0,0,"default",House_img_dic)
-tower = world.Wall(300,200,50,150,300,300,50,50,"S",0,0,"default",Tower_img_dic)
+sheep = world.Wall(0,225,75,75,0,250,75,50,"S",0,0,"right",ids.sheep_img_dic)
+goblin = world.Wall(350,350,60,60,360,350,50,60,"S",0,0,"right",ids.goblin_img_dic)
+tree1 = world.Wall(100,300,50,150,100,400,50,50,"S",0,0,"default",ids.tree_img_dic)
+tree2 = world.Wall(200,300,50,150,200,400,50,50,"S",0,0,"default",ids.tree_img_dic)
+tree3 = world.Wall(400,200,50,150,400,300,50,50,"S",0,0,"default",ids.tree_img_dic)
+castle = world.Wall(100,100,100,100,100,100,100,100,"S",0,0,"default",ids.Castle_img_dic)
+house = world.Wall(250,50,50,100,250,100,50,50,"S",0,0,"default",ids.House_img_dic)
+tower = world.Wall(300,200,50,150,300,300,50,50,"S",0,0,"default",ids.Tower_img_dic)
 
 
 
 warrior_draw = DrawImage(warrior)
+goblin_draw = DrawImage(goblin)
 castle_draw = DrawImage(castle)
 house_draw = DrawImage(house)
 tower_draw = DrawImage(tower)
-gold_draw = DrawImage(gold)
+gold1_draw = DrawImage(gold1)
+gold2_draw = DrawImage(gold2)
+gold3_draw = DrawImage(gold3)
 tree1_draw = DrawImage(tree1)
 tree2_draw = DrawImage(tree2)
 tree3_draw = DrawImage(tree3)
 sheep_draw = DrawImage(sheep)
 
-background = world.Background(0,0,500,500,0,0,0,0,"S",0,0,"default",background_img_dic)
+background = world.Background(0,0,500,500,0,0,0,0,"S",0,0,"default",ids.background_img_dic)
 background_draw = DrawImage(background)
 
 # hitbox수정필요!
-World_Walls = [sheep,tree1,tree2,tree3,castle,house,tower]
-world_Items = [gold]
-World_objects_draw=[(background,background_draw),
+World_Walls = [sheep,tree1,tree2,tree3,castle,house,tower,goblin]
+world_Items = [gold1,gold2,gold3]
+World_objects_draw=[
+                    (background,background_draw),
                     (warrior,warrior_draw),
                     (sheep,sheep_draw),
+                    (goblin,goblin_draw),
                     (tree1,tree1_draw),
                     (tree2,tree2_draw),
                     (tree3,tree3_draw),
                     (castle,castle_draw),
                     (house,house_draw),
                     (tower,tower_draw),
-                    (gold,gold_draw)]
+                    (gold1,gold1_draw),
+                    (gold2,gold2_draw),
+                    (gold3,gold3_draw),
+                    ]
 
 
 Item_count = 0
 
-#warrior.set_state("left")
-#warrior.set_velocity(6,1)
-#warrior.set_direction("R")
+
 sheep.set_velocity(4,0)
 sheep.set_direction("R")
 sheep.move_left_right(500)
-#warrior.set_velocity(2,1)
+
+goblin.set_velocity(4,4)
+goblin.set_direction("R")
+goblin.move_rectangle(340,340,440,440)
+
 ratValue = 0
 def frame_loop(*args):
     global lastTime
@@ -306,10 +180,11 @@ def frame_loop(*args):
     #print(lastTime)
     
     
-    if lastTime%8 ==0:
+    if lastTime%6 ==0:
         
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         sheep.move_left_right(500)
+        goblin.move_rectangle(340,340,440,440)
         #ctx.clearRect(0, 0, canvas.width, canvas.height)
         
         # 그리는 부분 수정!
@@ -330,7 +205,7 @@ def frame_loop(*args):
                 World_objects_draw = [pair for pair in World_objects_draw if pair[0].id != item.id]
                 #notify_server_game_completed()
                 
-                if Item_count == 2:
+                if Item_count == 3:
                     notify_server_game_completed()
                 
         if check_out(warrior):
