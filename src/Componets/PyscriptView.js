@@ -39,10 +39,16 @@ const PyscriptView = ({ runchRrl }) => {
                     <div className='PysciptInfo'>
                         <div className='inner-info-box'>
                             <div>
-                                <h5>Mission: 기사를 움직여 골드를 획득하세요!</h5>
+                                <h6>
+                                <span style={{fontFamily: "Noto Sans Mono", color: "#00f224"}}>Mission:</span> 
+                                <span style={{fontFamily: "EliceDigitalBaeum-Bd",color: "#00f224"}}>기사를 움직여 골드를 획득하세요!</span>
+                                </h6>
                             </div>
                             <div>
-                                <h6>기사: (x: {userX},y: {userY})</h6>
+                                <h6>
+                                <span style={{fontFamily: "EliceDigitalBaeum-Bd",color: "#00f224"}}>기사</span>
+                                <span style={{fontFamily: "Noto Sans Mono", color: "#00f224"}}>: (x: {userX},y: {userY})</span> 
+                                </h6>
                             </div>
                         </div>
                     </div>
@@ -58,21 +64,20 @@ const PyscriptView = ({ runchRrl }) => {
             ) : (
                 // Display the completion logo when the game is completed
                 <>
-                <div className='PysciptInfo'>
+                <div className='PysciptInfo_'>
                         <div className='inner-info-box'>
-                            <div>
-                                <h5>Mission: 다음 stage를 도전하고 싶다면!</h5>
-                            </div>
-                            <div>
-                                <h6>아래 로고를 클릭해주세요!</h6>
-                            </div>
                         </div>
                     </div>
                     <div className='IframeWrapper'>
-                        <div className='CompletionLogo' style={{textAlign: 'center', marginTop: '50px'}}>
-                            <a href="https://walla.my/survey/Cdd7bTtIQ8PwHPn2Eit5">
-                                <img src={logo_img} alt="Completion Logo" style={{maxWidth: '100%', height: 'auto'}}/>
-                            </a>
+                        <div className='CompletionLogo' style={{textAlign: 'center'}}>
+                        <a style={{ borderBottom: "none",  color: '#00f224'}} href="https://walla.my/survey/Cdd7bTtIQ8PwHPn2Eit5">
+                            <div>
+                                <h4 style={{ fontFamily: 'Noto Sans Mono' }}>Mission-clear</h4>
+                            </div>
+                            <div>
+                                <h5 style={{ fontFamily: 'Noto Sans Mono' }}>Go! Next Stage!</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 </>
