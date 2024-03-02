@@ -29,7 +29,8 @@ class DrawImage: # main에서만 js꺼 다룰 수 있음!
     def draw(self, obj):
         
         self.frame_length = obj.img_dic[obj.state]["frame"]
-        frame_width = obj.img_dic[obj.state]["f-width"] / self.frame_length
+        frame_width_move = obj.img_dic[obj.state]["f-width-full"] / self.frame_length
+        frame_width = obj.img_dic[obj.state]["f-width"]
         frame_height = obj.img_dic[obj.state]["f-height"]
         self.x = obj.x
         self.y = obj.y
@@ -46,8 +47,8 @@ class DrawImage: # main에서만 js꺼 다룰 수 있음!
         else:
             ctx.drawImage(
             self.image, 
-            self.frame_idx * frame_width, 0, # 스프라이트 시트에서의 x, y 위치
-            frame_width-90, frame_height,    # 추출할 프레임의 너비와 높이
+            self.frame_idx *  frame_width_move, 0, # 스프라이트 시트에서의 x, y 위치
+            frame_width, frame_height,    # 추출할 프레임의 너비와 높이
             self.x,self.y,                         # 캔버스 상의 x, y 위치
             self.width,self.height   # 캔버스 상의 프레임의 너비와 높이
             )
@@ -93,19 +94,22 @@ knight_img_dic ={
     "default":
         {
             "frame":6,
-            "f-width":1152,
+            "f-width-full":1152,
+            "f-widht": 100,
             "f-height":100,
             "img-url": './assets/knight/right/w-right.png'
         },
     "left":{
             "frame":6,
-            "f-width":1152,
+            "f-width-full":1152,
+            "f-widht": 100,
             "f-height":100,
             "img-url": './assets/knight/left/w-left.png'
         },
     "right":{
             "frame":6,
-            "f-width":1152,
+            "f-width-full":1152,
+            "f-widht": 100,
             "f-height":100,
             "img-url": './assets/knight/right/w-right.png'
         }
@@ -113,19 +117,22 @@ knight_img_dic ={
 sheep_img_dic = {
     "default":{
             "frame":6,
-            "f-width":768,
+            "f-width-full":768,
+            "f-width":50,
             "f-height":60,
             "img-url": './assets/objects/sheep/right/sheep-right.png'
         },
     "right":{
             "frame":6,
-            "f-width":768,
+            "f-width-full":768,
+            "f-width":50,
             "f-height":60,
             "img-url": './assets/objects/sheep/right/sheep-right.png'
         },
     "left":{
             "frame":6,
-            "f-width":768,
+            "f-width-full":768,
+            "f-width":50,
             "f-height":60,
             "img-url": './assets/objects/sheep/left/sheep-left.png'
         },
@@ -134,7 +141,8 @@ sheep_img_dic = {
 tree_img_dic = {
     "default":{
             "frame":4,
-            "f-width":768,
+            "f-width-full":768,
+            "f-width": 50,
             "f-height":180,
             "img-url": './assets/objects/tree/Tree.png'
     }
@@ -143,19 +151,22 @@ goblin_img_dic = {
      "default":
         {
             "frame":6,
-            "f-width":1152,
+            "f-width-full":1152,
+            "f-width": 100,
             "f-height":100,
             "img-url": './assets/goblin/right/g-right.png'
         },
     "left":{
             "frame":6,
-            "f-width":1152,
+            "f-width-full":1152,
+            "f-width": 100,
             "f-height":100,
             "img-url": './assets/goblin/left/g-left.png'
         },
     "right":{
             "frame":6,
-            "f-width":1152,
+            "f-width-full":1152,
+            "f-width": 100,
             "f-height":100,
             "img-url": './assets/goblin/right/g-right.png'
         }
@@ -163,6 +174,7 @@ goblin_img_dic = {
 Castle_img_dic = {
     "default":{
         "frame":1,
+        "f-width-full":195,
         "f-width":195,
         "f-height":288,
         "img-url":'./assets/Buildings/Castle/Castle_Blue.png'
@@ -171,6 +183,7 @@ Castle_img_dic = {
 House_img_dic = {
       "default":{
         "frame":1,
+        "f-width-full":108,
         "f-width":108,
         "f-height":142,
         "img-url":'./assets/Buildings/House/House_Blue.png'
@@ -179,6 +192,7 @@ House_img_dic = {
 Tower_img_dic ={
      "default":{
         "frame":1,
+        "f-width-full":115,
         "f-width":115,
         "f-height":173,
         "img-url":'./assets/Buildings/Tower/Tower_Blue.png'
@@ -187,6 +201,7 @@ Tower_img_dic ={
 background_img_dic={
      "default":{
         "frame":1,
+        "f-width-full":3300,
         "f-width":3300,
         "f-height":3300,
         "img-url":'./assets/background/grid_tile.png'
@@ -195,7 +210,8 @@ background_img_dic={
 gold_img_dic={
     "default":{
         "frame":7,
-        "f-width":896,
+        "f-width-full":896,
+        "f-width":50,
         "f-height":80,
         "img-url":'./assets/objects/gold/G_Spawn.png'
     }
