@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button'; // Button 컴포넌트 추가
-import logo_img from '../img_set/logo/CODENAME_green_logo.png'; // 로고 이미지 import
+import logo_img from '../img_set/logo/CODENAME_green_logo_blank.png'; // 로고 이미지 import
 import { TfiControlPlay } from "react-icons/tfi"; // button run icon
 import './Navbar.css';
 
