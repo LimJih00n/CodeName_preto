@@ -1,7 +1,7 @@
 class GameObject:
     _id_counter = 0
     
-    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_set):
+    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_dic):
         self.x = x
         self.y = y
         self.width = w
@@ -10,7 +10,7 @@ class GameObject:
         self.dx = dx
         self.dy = dy
         self.state = state
-        self.img_set = img_set
+        self.img_dic = img_dic
         self.hit_x = hit_x
         self.hit_y = hit_y
         self.hit_w = hit_w
@@ -80,12 +80,12 @@ class GameObject:
         
 
 class Hero(GameObject):
-    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_set={}):
-        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_set)
+    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_dic={}):
+        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_dic)
 
 class Wall(GameObject):
-    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_set={}):
-        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_set)
+    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_dic={}):
+        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_dic)
     
     def move_left_right(self,X):
         if self.x > X-self.width and self.state == "right":
@@ -99,17 +99,17 @@ class Wall(GameObject):
         
 
 class Background(GameObject):
-    def __init__(self, x, y, w, h,hit_x=0,hit_y=0,hit_w=0,hit_h=0, direction='S', dx=0, dy=0,state="default",img_set={}):
-        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_set)
+    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_dic={}):
+        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_dic)
 
 
 
 class Item(GameObject):
-    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_set={}):
-        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_set)
+    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_dic={}):
+        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_dic)
         
 class Monster(GameObject):
-    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_set={}):
-        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_set)
+    def __init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h, direction='S', dx=0, dy=0,state="default",img_dic={}):
+        super().__init__(x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_dic)
 
 

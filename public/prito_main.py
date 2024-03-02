@@ -16,35 +16,45 @@ console.log("Hey there, from 'console.log' inside PyScript!")
 class DrawImage: # main에서만 js꺼 다룰 수 있음!
     def __init__(self,obj) -> None:
         self.image = Image.new()
-        self.image.src = ""
+        self.image.src = "!"
         self.x = obj.x
         self.y = obj.y
         self.height = obj.height
         self.width = obj.width
-        self.img_set_len = {}
-        #self.img_set_len
-        self.pic_num_set = {}
         self.state = "default"
-        print(obj)
-        for k,v in obj.img_set.items():
-            self.img_set_len[k] = len(obj.img_set[k])
-            self.pic_num_set[k] = 0
+        self.frame_idx = 0
+        self.frame_length = 0
     
     
     def draw(self, obj):
+        
+        self.frame_length = obj.img_dic[obj.state]["frame"]
+        frame_width = obj.img_dic[obj.state]["f-width"] / self.frame_length
+        frame_height = obj.img_dic[obj.state]["f-height"]
         self.x = obj.x
         self.y = obj.y
         self.width = obj.width
         self.height = obj.height
+        
+        
+        if self.image.src != "!" or self.state != obj.state:
+            self.image.src = obj.img_dic[obj.state]["img-url"]
         self.state = obj.state
-        img_len = self.img_set_len[self.state]
+                
+        if obj.img_dic[self.state]["frame"] == 1:
+            ctx.drawImage(self.image, self.x, self.y, self.width, self.height)
+        else:
+            ctx.drawImage(
+            self.image, 
+            self.frame_idx * frame_width, 0, # 스프라이트 시트에서의 x, y 위치
+            frame_width-90, frame_height,    # 추출할 프레임의 너비와 높이
+            self.x,self.y,                         # 캔버스 상의 x, y 위치
+            self.width,self.height   # 캔버스 상의 프레임의 너비와 높이
+            )
+            self.frame_idx +=1
+            self.frame_idx = (self.frame_idx + 1) % self.frame_length
         
         
-        self.pic_num_set[self.state] = self.pic_num_set[self.state] + 1 if self.pic_num_set[self.state] < img_len-1 else 0 
-        
-        self.image.src = obj.img_set[self.state][self.pic_num_set[self.state]]
-        #print(self.pic_num)
-        ctx.drawImage(self.image, self.x, self.y, self.width, self.height)
 
 # 방향애따라 그리는 것도 달라야함
 # 이미지set있다면 그거 따라가기
@@ -79,54 +89,118 @@ def UserLoopCode():
 
 
 ################################
-rabbit_img_set ={
-   "default": ['./assets/rabbit/front/1.png','./assets/rabbit/front/2.png','./assets/rabbit/front/3.png','./assets/rabbit/front/4.png'],
-   "front": ['./assets/rabbit/front/1.png','./assets/rabbit/front/2.png','./assets/rabbit/front/3.png','./assets/rabbit/front/4.png'],
-    "back":['./assets/rabbit/back/1.png','./assets/rabbit/back/2.png','./assets/rabbit/back/3.png','./assets/rabbit/back/4.png'],
-    "left":['./assets/rabbit/left/1.png','./assets/rabbit/left/2.png','./assets/rabbit/left/3.png','./assets/rabbit/left/4.png'],
-    "right":['./assets/rabbit/right/1.png','./assets/rabbit/right/2.png','./assets/rabbit/right/3.png','./assets/rabbit/right/4.png'],
+knight_img_dic ={
+    "default":
+        {
+            "frame":6,
+            "f-width":1152,
+            "f-height":100,
+            "img-url": './assets/knight/right/w-right.png'
+        },
+    "left":{
+            "frame":6,
+            "f-width":1152,
+            "f-height":100,
+            "img-url": './assets/knight/left/w-left.png'
+        },
+    "right":{
+            "frame":6,
+            "f-width":1152,
+            "f-height":100,
+            "img-url": './assets/knight/right/w-right.png'
+        }
 }
-knight_img_set_ ={
-    "default":['./assets/Warrior_Blue.png']
+sheep_img_dic = {
+    "default":{
+            "frame":6,
+            "f-width":768,
+            "f-height":60,
+            "img-url": './assets/objects/sheep/right/sheep-right.png'
+        },
+    "right":{
+            "frame":6,
+            "f-width":768,
+            "f-height":60,
+            "img-url": './assets/objects/sheep/right/sheep-right.png'
+        },
+    "left":{
+            "frame":6,
+            "f-width":768,
+            "f-height":60,
+            "img-url": './assets/objects/sheep/left/sheep-left.png'
+        },
 }
-knight_img_set ={
-    "default":['./assets/knight/right/Warrior_Blue_1.png','./assets/knight/right/Warrior_Blue_2.png','./assets/knight/right/Warrior_Blue_3.png',
-               './assets/knight/right/Warrior_Blue_4.png','./assets/knight/right/Warrior_Blue_5.png','./assets/knight/right/Warrior_Blue_6.png',],
-    "right":['./assets/knight/right/Warrior_Blue_1.png','./assets/knight/right/Warrior_Blue_2.png','./assets/knight/right/Warrior_Blue_3.png',
-               './assets/knight/right/Warrior_Blue_4.png','./assets/knight/right/Warrior_Blue_5.png','./assets/knight/right/Warrior_Blue_6.png',],
-    "left":['./assets/knight/left/Warrior_Blue_1.png','./assets/knight/left/Warrior_Blue_2.png','./assets/knight/left/Warrior_Blue_3.png',
-               './assets/knight/left/Warrior_Blue_4.png','./assets/knight/left/Warrior_Blue_5.png','./assets/knight/left/Warrior_Blue_6.png',]
+
+tree_img_dic = {
+    "default":{
+            "frame":4,
+            "f-width":768,
+            "f-height":180,
+            "img-url": './assets/objects/tree/Tree.png'
+    }
 }
-Castle_img_set = {
-    "default":['./assets/Buildings/Castle/Castle_Blue.png']
+goblin_img_dic = {
+     "default":
+        {
+            "frame":6,
+            "f-width":1152,
+            "f-height":100,
+            "img-url": './assets/goblin/right/g-right.png'
+        },
+    "left":{
+            "frame":6,
+            "f-width":1152,
+            "f-height":100,
+            "img-url": './assets/goblin/left/g-left.png'
+        },
+    "right":{
+            "frame":6,
+            "f-width":1152,
+            "f-height":100,
+            "img-url": './assets/goblin/right/g-right.png'
+        }
 }
-House_img_set = {
-    "default" : ['./assets/Buildings/House/House_Blue.png']
+Castle_img_dic = {
+    "default":{
+        "frame":1,
+        "f-width":195,
+        "f-height":288,
+        "img-url":'./assets/Buildings/Castle/Castle_Blue.png'
+    }
 }
-Tower_img_set ={
-    "default" : ['./assets/Buildings/Tower/Tower_Blue.png']
+House_img_dic = {
+      "default":{
+        "frame":1,
+        "f-width":108,
+        "f-height":142,
+        "img-url":'./assets/Buildings/House/House_Blue.png'
+    }
 }
-background_img_set={
-    "default" : ['./assets/background/grid_tile.png']
+Tower_img_dic ={
+     "default":{
+        "frame":1,
+        "f-width":115,
+        "f-height":173,
+        "img-url":'./assets/Buildings/Tower/Tower_Blue.png'
+    }
 }
-Gem_img_set = {
-    "default" : ['./assets/item/gem/gem-1.png','./assets/item/gem/gem-2.png','./assets/item/gem/gem-3.png','./assets/item/gem/gem-4.png','./assets/item/gem/gem-5.png']
+background_img_dic={
+     "default":{
+        "frame":1,
+        "f-width":3300,
+        "f-height":3300,
+        "img-url":'./assets/background/grid_tile.png'
+    }
 }
-Gold_img_set = {
-    "default": ['./assets/item/gold/G_Spawn.png','./assets/item/gold/G_Spawn (1).png','./assets/item/gold/G_Spawn (2).png','./assets/item/gold/G_Spawn (3).png'
-                ,'./assets/item/gold/G_Spawn (4).png','./assets/item/gold/G_Spawn (5).png','./assets/item/gold/G_Spawn (6).png']
+gold_img_dic={
+    "default":{
+        "frame":7,
+        "f-width":896,
+        "f-height":80,
+        "img-url":'./assets/objects/gold/G_Spawn.png'
+    }
 }
-Tree_img_set = {
-    "default" : ['./assets/objects/tree/Tree.png','./assets/objects/tree/Tree (1).png','./assets/objects/tree/Tree (2).png','./assets/objects/tree/Tree (3).png']
-}
-Sheep_img_set={
-    "right":['./assets/objects/sheep/right/HappySheep_Bouncing (1).png','./assets/objects/sheep/right/HappySheep_Bouncing (2).png',
-             './assets/objects/sheep/right/HappySheep_Bouncing (3).png','./assets/objects/sheep/right/HappySheep_Bouncing (4).png',
-             './assets/objects/sheep/right/HappySheep_Bouncing (5).png','./assets/objects/sheep/right/HappySheep_Bouncing.png'],
-    "left":['./assets/objects/sheep/left/HappySheep_Bouncing (1).png','./assets/objects/sheep/left/HappySheep_Bouncing (2).png',
-             './assets/objects/sheep/left/HappySheep_Bouncing (3).png','./assets/objects/sheep/left/HappySheep_Bouncing (4).png',
-             './assets/objects/sheep/left/HappySheep_Bouncing (5).png','./assets/objects/sheep/left/HappySheep_Bouncing.png'],
-}
+
 castle_set = []
 World_Walls = []
 #__init__(self, x, y, w, h,hit_x,hit_y,hit_w,hit_h,direction, dx, dy,state,img_set):
@@ -137,34 +211,32 @@ World_Walls = []
 # hit x,y: hit box의 시작좌표
 # hit_w _h : hit box의 width와 height
 
-warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",knight_img_set_)
+warrior = world.Hero(0,0,50,50,10,10,30,30,"S",0,0,"default",knight_img_dic)
 
 
-w_img = Image.new()
-w_img.src = './assets/Warrior_Blue.png'
-
-frame_width_ = 200
-frame_width = 180 # 각 프레임의 너비
-frame_height = 100 # 각 프레임의 높이
-num_frames = 6 # 스프라이트에서 프레임의 총 수
-frame_index = 0
 
 
-gem = world.Item(413,413,25,25,413,413,25,25,"S",0,0,"default",Gem_img_set)
-gold = world.Item(413,113,25,25,413,113,25,25,"S",0,0,"default",Gold_img_set)
+# warrior: 1152-6: 192-100
+#tree 768-4 -180
+#sheep 768-6 - 60
+#gold 896-7 - 80
+#goblin 1152-6-100
+
+
+
+gold = world.Item(413,113,25,25,413,113,25,25,"S",0,0,"default",gold_img_dic)
 
 # 좌표지정
 #hit_w = width - hit_x
 #hit_h = height - hit_y
 
-sheep = world.Wall(0,250,50,50,0,250,50,50,"S",0,0,"right",Sheep_img_set)
-tree1 = world.Wall(100,300,50,150,100,400,50,50,"S",0,0,"default",Tree_img_set)
-tree2 = world.Wall(200,300,50,150,200,400,50,50,"S",0,0,"default",Tree_img_set)
-tree3 = world.Wall(400,200,50,150,400,300,50,50,"S",0,0,"default",Tree_img_set)
-castle = world.Wall(100,100,100,100,100,100,100,100,"S",0,0,"default",Castle_img_set)
-house = world.Wall(250,50,50,100,250,100,50,50,"S",0,0,"default",House_img_set)
-tower = world.Wall(300,200,50,150,300,300,50,50,"S",0,0,"default",Tower_img_set)
-
+sheep = world.Wall(0,250,50,50,0,250,50,50,"S",0,0,"right",sheep_img_dic)
+tree1 = world.Wall(100,300,50,150,100,400,50,50,"S",0,0,"default",tree_img_dic)
+tree2 = world.Wall(200,300,50,150,200,400,50,50,"S",0,0,"default",tree_img_dic)
+tree3 = world.Wall(400,200,50,150,400,300,50,50,"S",0,0,"default",tree_img_dic)
+castle = world.Wall(100,100,100,100,100,100,100,100,"S",0,0,"default",Castle_img_dic)
+house = world.Wall(250,50,50,100,250,100,50,50,"S",0,0,"default",House_img_dic)
+tower = world.Wall(300,200,50,150,300,300,50,50,"S",0,0,"default",Tower_img_dic)
 
 
 
@@ -172,20 +244,20 @@ warrior_draw = DrawImage(warrior)
 castle_draw = DrawImage(castle)
 house_draw = DrawImage(house)
 tower_draw = DrawImage(tower)
-gem_draw = DrawImage(gem)
 gold_draw = DrawImage(gold)
 tree1_draw = DrawImage(tree1)
 tree2_draw = DrawImage(tree2)
 tree3_draw = DrawImage(tree3)
 sheep_draw = DrawImage(sheep)
 
-background = world.Background(0,0,500,500,0,0,0,0,"S",0,0,"default",background_img_set)
+background = world.Background(0,0,500,500,0,0,0,0,"S",0,0,"default",background_img_dic)
 background_draw = DrawImage(background)
 
 # hitbox수정필요!
 World_Walls = [sheep,tree1,tree2,tree3,castle,house,tower]
-world_Items = [gem,gold]
+world_Items = [gold]
 World_objects_draw=[(background,background_draw),
+                    (warrior,warrior_draw),
                     (sheep,sheep_draw),
                     (tree1,tree1_draw),
                     (tree2,tree2_draw),
@@ -193,7 +265,6 @@ World_objects_draw=[(background,background_draw),
                     (castle,castle_draw),
                     (house,house_draw),
                     (tower,tower_draw),
-                    (gem,gem_draw),
                     (gold,gold_draw)]
 
 
@@ -216,15 +287,10 @@ def frame_loop(*args):
     global Item_count
     global World_objects_draw
     
-    global frame_height
-    global frame_index
-    global frame_width
-    global frame_width_
-    global num_frames
     #print(lastTime)
     
     
-    if lastTime%3 ==0:
+    if lastTime%8 ==0:
         
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         sheep.move_left_right(500)
@@ -233,18 +299,7 @@ def frame_loop(*args):
         # 그리는 부분 수정!
         for obj,draw in World_objects_draw:
             update_draw(obj,draw)
-            
-            
-        ctx.drawImage(
-            w_img, 
-            frame_index * frame_width_, 0, # 스프라이트 시트에서의 x, y 위치
-            frame_width, frame_height,    # 추출할 프레임의 너비와 높이
-            0, 0,                         # 캔버스 상의 x, y 위치
-            50, 50   # 캔버스 상의 프레임의 너비와 높이
-        )
         
-        
-        frame_index = (frame_index + 1) % num_frames # 다음 프레임으로
         
         for wall in World_Walls:
             if warrior.check_collision(wall):                                                                                                                    
