@@ -72,10 +72,10 @@ const PyscriptView = ({ runchRrl }) => {
                         <div className='CompletionLogo' style={{textAlign: 'center'}}>
                         <a style={{ borderBottom: "none",  color: '#00f224'}} href="https://walla.my/survey/Cdd7bTtIQ8PwHPn2Eit5">
                             <div>
-                                <h4 style={{ fontFamily: 'Noto Sans Mono' }}>Mission-clear</h4>
+                                <h3 style={{ fontFamily: 'Noto Sans Mono' }}>Mission-clear</h3>
                             </div>
                             <div>
-                                <h5 style={{ fontFamily: 'Noto Sans Mono' }}>Go! Next Stage!</h5>
+                                <h4 style={{ fontFamily: 'Noto Sans Mono' }}>Go! Next Stage!</h4>
                             </div>
                         </a>
                     </div>

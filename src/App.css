@@ -1,35 +1,39 @@
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #111; /* Set the background color you want */
 }
 
-.App{
-  margin-top:1%;
-  width: 100%; 
+#root, .App {
+  margin-top:2%;
+  height: 100%;
+  background: #111; /* Ensure the background color is consistent */
 }
-.body{
+
+.body {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  gap:1%;
+  gap: 1%;
 }
 
-.left-container{
+.left-container, .center-container, .right-container {
+  height: 600px;
+}
+
+.left-container {
   flex: 2%;
   width: 500px;
-  height: 600px;
 }
-.center-container{
+
+.center-container {
   flex: 44%;
   width: 500px;
-  height: 600px;
 }
-.right-container{
+
+.right-container {
   flex: 44%;
   width: 500px;
-  height: 600px;
 }

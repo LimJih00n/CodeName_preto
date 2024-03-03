@@ -3,7 +3,7 @@ import './SideBar.css';
 import { TfiAgenda, TfiSettings } from "react-icons/tfi";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-
+import { FaPython } from "react-icons/fa";
 
 const SideBar = ({ setActiveComponent }) => {
     return (
@@ -14,7 +14,7 @@ const SideBar = ({ setActiveComponent }) => {
                     <OverlayTrigger
                         placement="right"
                         delay={{ show: 10, hide: 40 }}
-                        overlay={<Tooltip id="agenda-tooltip">Agenda</Tooltip>}
+                        overlay={<Tooltip id="agenda-tooltip">Class</Tooltip>}
                     >
                         <button style={{ background: "transparent", border: "none" }}>
                             <TfiAgenda size="25" color= "#00f224"/>
@@ -25,10 +25,10 @@ const SideBar = ({ setActiveComponent }) => {
                     <OverlayTrigger
                         placement="right"
                         delay={{ show: 10, hide: 40 }}
-                        overlay={<Tooltip id="settings-tooltip">Settings</Tooltip>}
+                        overlay={<Tooltip id="settings-tooltip">Coding</Tooltip>}
                     >
                         <button style={{ background: "transparent", border: "none" }}>
-                            <TfiSettings size="25" color= "#00f224"/>
+                            <FaPython size="25" color= "#00f224"/>
                         </button>
                     </OverlayTrigger>
                 </div>
