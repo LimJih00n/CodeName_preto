@@ -12,8 +12,8 @@ import Axios from 'axios';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('codeEditor');
-  const [initCode, setInitCode] = useState('#Run을 눌러 시작하세요!!\n\n#init code: RUN 클릭시 한번만 실행됩니다!\n#기사를 움직일 수 있는 코드를 활용하세요!\n#warrior.set_direction("R") #오른쪽으로 이동\n\n#warrior.set_velocity(5,5) #이동속도 지정\n\n#loop 창에서, 언제 아래로 내려가야하는지 알아봅시다.\n');
-  const [loopCode, setLoopCode] = useState('#loop code: 진행하는 동안 계속 실행됩니다!\n#x 좌표가 40일때 아래로 이동하세요!\n\n#if warrior.get_x() == 400:#금화 x좌표값이랑 같을때\n#   warrior.set_direction("D")#아래로 방향변경\n');
+  const [initCode, setInitCode] = useState('#Run을 눌러 시작하세요!!\n\n#init code: RUN 클릭시 한번만 실행됩니다!\n#기사를 움직일 수 있는 코드를 활용하세요!\n#warrior.set_direction("R") #오른쪽으로 이동\nwarrior.set_direction("R")\n\n#warrior.set_velocity(5,5) #이동속도 지정\nwarrior.set_velocity(5,5)\n#loop 창에서, 언제 아래로 내려가야하는지 알아봅시다.\n');
+  const [loopCode, setLoopCode] = useState('#loop code: 진행하는 동안 계속 실행됩니다!\n#x 좌표가 40일때 아래로 이동하세요!\n\n#if warrior.get_x() == 400:#금화 x좌표값이랑 같을때\n#   warrior.set_direction("D")#아래로 방향변경\n\nif warrior.get_x() == 400:\n   warrior.set_direction("D")\n');
   const [pyUrl , setPyurl] = useState('');
   const [loading, setLoading] = useState(false);
 
